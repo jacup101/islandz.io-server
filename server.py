@@ -49,7 +49,7 @@ class Server(BaseHTTPRequestHandler):
         
     # POST echoes the message adding a JSON field
     def do_POST(self):
-        # self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Origin', '*')
         ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
         
         # refuse to receive non-json content
