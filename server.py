@@ -32,14 +32,24 @@ class Server(BaseHTTPRequestHandler):
         
     def do_HEAD(self):
         self._set_headers()
+
+    def do_OPTIONS(self):           
+        self.send_response(200, "ok")       
+        self.send_header('Access-Control-Allow-Origin', '*')                
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header("Access-Control-Allow-Headers", "X-Requested-With")        
+        self.end_headers()
         
     # GET sends back a Hello world message
     def do_GET(self):
         self._set_headers()
+        self.send_header('Access-Control-Allow-Origin', '*')
+
         self.wfile.write(json.dumps({'hello': 'world', 'received': 'ok'}))
         
     # POST echoes the message adding a JSON field
     def do_POST(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
         ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
         
         # refuse to receive non-json content
