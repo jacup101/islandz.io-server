@@ -56,7 +56,7 @@ class Server(BaseHTTPRequestHandler):
         ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
         
         # refuse to receive non-json content
-        if ctype != 'application/json':
+        if ctype != 'application/json' and ctype != 'text/plain':
             self.send_response(400)
             self.end_headers()
             return
