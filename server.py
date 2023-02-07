@@ -37,7 +37,7 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(200, "ok")       
         self.send_header('Access-Control-Allow-Origin', '*')                
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header("Access-Control-Allow-Headers", "X-Requested-With")        
+        self.send_header("Access-Control-Allow-Headers", " content-type")        
         self.end_headers()
         
     # GET sends back a Hello world message
