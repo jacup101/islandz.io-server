@@ -27,7 +27,7 @@ class Server(BaseHTTPRequestHandler):
 
     def _set_headers(self):
         self.send_response(200)
-        self.send_header('Content-type', 'application/json')
+        self.send_header('content-type', 'application/json')
         self.end_headers()
         
     def do_HEAD(self):
@@ -37,7 +37,7 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(200, "ok")       
         self.send_header('Access-Control-Allow-Origin', '*')                
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header("Access-Control-Allow-Headers", " content-type")        
+        self.send_header("Access-Control-Allow-Headers", " *")        
         self.end_headers()
         
     # GET sends back a Hello world message
