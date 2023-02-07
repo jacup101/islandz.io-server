@@ -25,6 +25,10 @@ class Server(BaseHTTPRequestHandler):
 
     game = Game()
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        BaseHTTPRequestHandler.end_headers(self)
+
     def _set_headers(self):
         self.send_response(200)
         self.send_header('content-type', 'application/json')
@@ -70,7 +74,6 @@ class Server(BaseHTTPRequestHandler):
         
         # send the message back
         self._set_headers()
-        self.send_header('Access-Control-Allow-Origin', '*')
         self.wfile.write(bytes(json.dumps(message), 'utf-8'))
 
 
